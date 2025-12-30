@@ -1,72 +1,42 @@
-body {
-    background-color: blanchedalmond;
+/* Reset & basic styles */
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color: blanchedalmond;
 }
 
 h1 {
-    font-style: normal;
+  font: bold 40px Garamond, serif;
+  text-align: left;
+  margin-top: 2rem;
 }
 
-
-.container {
-    flex-wrap: wrap;
+h2 {
+  font: bold 30px Garamond, serif;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 16px;
+p {
+  font: normal 15px Garamond, serif;
 }
 
-.card {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* ensures square */
-  border-radius: 12px;
-
-  background-image: var(--bg);
-  background-size: cover;
-  background-position: center;
-
-  position: relative;
-  overflow: hidden;
-
-  text-decoration: none;
-  color: white;
+span {
+  font: bold 15px Garamond, serif;
 }
 
-.card span {
-  position: absolute;
-  inset: 0;
-
+/* Page wrapper for flex layout */
+.page-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: bold;
-  text-align: center;
-  padding: 8px;
-
-  background: rgba(0, 0, 0, 0.45);
+  flex-direction: column;
+  min-height: 100vh; /* ensures gradient fills bottom */
 }
 
-.card:hover span {
-  background: rgba(0, 0, 0, 0.65);
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
+/* Card Section */
 .card-section {
   width: 90%;
-  max-width: 1200px;   /* optional but recommended */
-  margin: 3rem auto;
+  max-width: 1200px;
+  margin: 3rem auto 0;
   text-align: left;
 }
-
 
 .section-header {
   margin-bottom: 1.5rem;
@@ -83,5 +53,78 @@ h1 {
   color: #666;
 }
 
+/* Grid and Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
 
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.card span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.card:hover span {
+  background: rgba(0, 0, 0, 0.50);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Section Image */
+.section-image {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.section-image img {
+  max-width: 35%;
+  height: auto;
+  margin: 0;
+}
+
+/* Dividers */
+:root {
+  --divider-color: #5b3b04;
+  --divider-thickness: 20px;
+  --gradient-color: rgba(140, 94, 26, 0.884);
+}
+
+.full-width-divider {
+  width: 100vw;
+  height: var(--divider-thickness);
+  background-color: var(--divider-color);
+  margin: 0;
+}
+
+.gradient-divider {
+  flex: 1; /* fills remaining space */
+  width: 100vw;
+  background: linear-gradient(to bottom, var(--gradient-color), lightcoral);
+  margin: 0;
+}
