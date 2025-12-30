@@ -1,4 +1,87 @@
 body {
     background-color: blanchedalmond;
-
 }
+
+h1 {
+    font-style: normal;
+}
+
+
+.container {
+    flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* ensures square */
+  border-radius: 12px;
+
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+  overflow: hidden;
+
+  text-decoration: none;
+  color: white;
+}
+
+.card span {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.card:hover span {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-section {
+  width: 90%;
+  max-width: 1200px;   /* optional but recommended */
+  margin: 3rem auto;
+  text-align: left;
+}
+
+
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.section-header p {
+  margin: 0;
+  max-width: 600px;
+  color: #666;
+}
+
+
+
