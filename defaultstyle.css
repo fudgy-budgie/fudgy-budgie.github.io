@@ -7,8 +7,9 @@ html, body {
 
 h1 {
   font: bold 40px Garamond, serif;
-  text-align: left;
-  margin-top: 2rem;
+  margin: 2rem auto 0;
+  width: 90%;
+  max-width: 1200px;
 }
 
 h2 {
@@ -33,9 +34,8 @@ span {
 /* Card Section */
 .card-section {
   width: 90%;
-  max-width: 1200px;
+  max-width: calc(6 * 100px + 5 * 16px); /* 6 cards + gaps */
   margin: 3rem auto 0;
-  text-align: left;
 }
 
 .section-header {
@@ -56,9 +56,13 @@ span {
 /* Grid and Cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(100px, 1fr)
+  );
   gap: 16px;
 }
+
 
 .card {
   width: 100%;
