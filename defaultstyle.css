@@ -117,6 +117,7 @@ span {
   --divider-color: #5b3b04;
   --divider-thickness: 20px;
   --gradient-color: rgba(140, 94, 26, 0.884);
+  --post-min-width: 600px;
 }
 
 .full-width-divider {
@@ -132,3 +133,66 @@ span {
   background: linear-gradient(to bottom, var(--gradient-color), lightcoral);
   margin: 0;
 }
+
+
+/* Post Grid (Topic Pages) */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--post-min-width, 600px), 1fr)
+  );
+  gap: 2rem;
+}
+
+/* Post Card */
+.post {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.post-title {
+  font: bold 28px Garamond, serif;
+  margin: 0 0 0.25rem 0;
+}
+
+.post-date {
+  font: normal 16px Garamond, serif;
+  color: #555;
+  margin: 0 0 1.5rem 0;
+}
+
+.post-text {
+  font: normal 16px Garamond, serif;
+  line-height: 1.6;
+  text-indent: 2em;          /* adjustable */
+  margin: 0 0 1.5rem 0;
+}
+
+.post-image {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.post-image img {
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.post-image figcaption {
+  font: italic 14px Garamond, serif;
+  color: #444;
+  margin: 0.25rem 0 0 0; /* no gap */
+}
+
+.post-divider {
+  width: var(--post-divider-width, 60%);
+  height: var(--post-divider-thickness, 4px);
+  background-color: var(--post-divider-color, #5b3b04);
+  margin: 2rem auto;
+}
+
