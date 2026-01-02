@@ -141,7 +141,7 @@ span {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(var(--post-min-width, 600px), 1fr)
+    minmax(var(--post-min-width, 850px), 1fr)
   );
   gap: 2rem;
 }
