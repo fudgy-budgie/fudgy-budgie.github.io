@@ -118,7 +118,7 @@ span {
   --divider-color: saddlebrown;
   --divider-thickness: 20px;
   --gradient-color: rgba(140, 94, 26, 0.884);
-  --post-min-width: 300px;
+  --post-min-width: 400px;
 }
 
 .full-width-divider {
