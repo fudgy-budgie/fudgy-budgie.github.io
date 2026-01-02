@@ -50,6 +50,7 @@ span {
 .section-header p {
   margin: 0;
   max-width: 600px;
+  font-size: 1.2rem;
   color: #666;
 }
 
@@ -114,7 +115,7 @@ span {
 
 /* Dividers */
 :root {
-  --divider-color: #5b3b04;
+  --divider-color: saddlebrown;
   --divider-thickness: 20px;
   --gradient-color: rgba(140, 94, 26, 0.884);
   --post-min-width: 300px;
@@ -190,9 +191,9 @@ span {
 }
 
 .post-divider {
-  width: var(--post-divider-width, 60%);
-  height: var(--post-divider-thickness, 4px);
-  background-color: var(--post-divider-color, #5b3b04);
-  margin: 2rem auto;
+  width: var(--post-divider-width, 100%);
+  height: var(--post-divider-thickness, 2px);
+  background-color: var(--post-divider-color, saddlebrown);
+  margin: 1rem auto;
 }
 
