@@ -12,7 +12,7 @@
     <section class="card-section">
       <header class="section-header">
         <h2>Electronics Projects</h2>
-        <p>I realized that schools favor teaching students how to code, but rarely how to integrate coding with hardware components.
+        <p>Schools favor teaching students how to code, but rarely how to integrate coding with hardware components.
           You only really get to work on electronics if you join a specific program, an elective course, or find the motivation to experiment on your own.
           This is my attempt at applying the little bit of Python that I have learned from school to make something useful and physical.
         </p>
@@ -26,10 +26,11 @@
 
                 <div class="post-divider"></div>
 
-                <figure class="post-image">
+                <figure class="post-media">
                   <a href="assets/images/placeholder1.webp">
-                    <img src="assets/image/placeholder1.webp" alt="Description">
+                    <img src="assets/images/placeholder1.webp" alt="">
                   </a>
+                  <figcaption>Figure 1a: LED Matrix Display with Local Station Time</figcaption>
                 </figure>
 
                 <p class="post-text">
@@ -39,7 +40,93 @@
                   I’ll start by figuring out the hardware first and then creating the Arrivals Module.
                   The Weather Module can come later.
                 </p>
-              
+
+                <p class="post-text">
+                  I started by researching all the components that I needed for the project.
+                  This is the list of items that I have purchased in the end.
+                  They were all sourced from either Adafruit or Micro Center.
+                  <ul>
+                    <li>64x32 Pixel RGB LED matrix (HUB75 Standard) <a href="https://www.adafruit.com/product/2278">from Adafruit</a></li>
+                    <li>Raspberry Pi 4 Model B</li>
+                    <li>F-F Jumper wire set</li>
+                    <li>2.1 mm jack to screw terminal block <a href="https://www.adafruit.com/product/368"> from Adafruit</a></li>
+                    <li>5V 3A Power supply</li>
+                    <li>5V 4A Power supply <a href="https://www.adafruit.com/product/1466"> from Adafruit</a></li> 
+                    <li>32GB Mini SD Card</li>
+                  </ul>
+                </p>
+                <p class="post-text">
+                  Sourcing the appropriate power supplies is important because incorrectly paired power supplies can damage the electronics.
+                  The power adapter should be able to handle a wide range of voltages. The range should encompass 120V for North America.
+                  The power adapter output voltage should match closely with the rated voltage of the device while providing a maximum output current that is greater than what the device demands.
+                  After verifying the specifications of my components, the 5V 3A power supply should be used for the Pi, while the 4A supply should be used for the display.
+                </p>
+
+                <p class="post-text">
+                  When the components arrived, I began setting up the Pi. I followed the <a href="https://www.raspberrypi.com/documentation/computers/getting-started.html"> Pi documentation</a> by enabling the Raspberry Pi Connect functionality and installing Raspberry Pi OS onto the SD Card.
+                  Screensharing through Raspberry Pi Connect was my only option because I don’t have a free external monitor to connect the Pi to.
+                </p>
+
+                <p class="post-text">
+                  I'm glad that I learned the very basics of the command line interface (CLI), as executing the important commands for this project required interfacing with the terminal.
+                  I still referred to a table of commands often, as I’m still unfamiliar with the commands.
+                  I installed Python on the Pi and immediately got stuck installing the repository that I needed to communicate with the matrix.
+                  Turns out, a virtual environment has to be created beforehand to run Python.
+                  Once I got that problem resolved, I proceeded to download the <a href="https://github.com/hzeller/rpi-rgb-led-matrix">rpi-rgb-led-matrix repository</a>.
+                  With the repository installed, I decided that testing the sample programs and troubleshooting for common issues would be valuable in preventing programatic problems when I make my own LED matrix program.
+                  The matrix would have to be connected to power and the Pi before I can do any testing.
+                </p>
+
+                <p class="post-text">
+                  Adafruit recommended using their 2.1 mm jack to screw terminal block to connect with the power wires of the LED matrix.
+                  However, the power cables terminated in a fork shape.
+                  Usually, this would not be a problem, as the fork-shaped terminus is ideal for connecting many display panels together through a busbar.
+                  My project only uses one display panel, so this became an issue.
+                  My solution was to bend the forks so that the wires could meet the terminal block contacts.
+                </p>
+
+                <figure class="post-media">
+                  <a href="assets/images/placeholder1.webp">
+                    <img src="assets/images/placeholder1.webp" alt="">
+                  </a>
+                  <figcaption>Figure 1b: Power and GPIO Pin Connections</figcaption>
+                </figure>
+
+                <p class="post-text">
+                  The LED matrix receives instructions from the GPIO pinouts in the back of the panel. 
+                  I referred to the HUB75 pinout layout and connected them to the appropriate GPIO pins on the Pi using the F-F jumper cables.
+                  With the power and data pins connected, I then used Claude to help me review the sample codes quickly.
+                  I learned that a lot of the bugs were caused by the following.
+                  <ul>
+                    <li>Relative and absolute paths breaking</li>
+                    <li>GPIO slowdown parameter is set to a low value</li>
+                    <li>Some module syntax are out of date</li>
+                  </ul>
+                </p>
+
+                <p class="post-text">
+                  With these bugs in mind, I installed the <a href="https://github.com/Andrew-Dickinson/nyct-gtfs">nyct_gtfs Python library</a> and began writing my own display program. This library makes working with the <a href="https://www.mta.info/developers">MTA GTFS feed</a> a lot easier.
+                  This library makes working with the MTA gtfs feed a lot easier.
+                  The GTFS standard allows transportation organizations to publish real-time data from the transportation system and format it for API access.
+                </p>
+
+                <p class="post-text">
+                  I created my own functions for displaying words, shapes, and formatting the overall display.
+                  The only thing I needed help with was implementing a buffer system for requesting the transportation information from nyct_gtfs.
+                  I used Claude sparingly to help me get this portion programmed, as the complexity of this is way over my head.
+                </p>
+
+                <p class="post-text">
+                  In the end, I was able to create a transportation Arrival Module that updates when (eta in minutes) and which (train lines represented as bullets) northbound and southbound trains will be arriving at a subway station.
+                  Three randomly selected stations are chosen for demonstration in this post. Since all of the code will be running on the Pi, I can have this display running 24/7 continuously.
+                </p>
+
+                <figure class="post-media">
+                  <video controls>
+                    <source src="assets/videos/placeholder.mp4" type="video/mp4">
+                  </video> 
+                  <figcaption>Figure 1c: Arrivals Module Working </figcaption>
+                </figure>
 
             </article>
 

@@ -165,29 +165,48 @@ span {
   margin: 0 0 1.5rem 0;
 }
 
-.post-text {
+
+.post-text,
+.post ul,
+.post ol {
   font: normal 16px Garamond, serif;
   line-height: 1.4;
-  text-indent: 2em;          /* adjustable */
-  margin: 0 0 1.5rem 0;
 }
 
-.post-image {
+.post-text {
+  text-indent: 2em;
+  margin-bottom: 1.4rem;
+}
+
+.post ul,
+.post ol {
+  margin: 0 0 1.5rem 2em;
+  padding-left: 1.5em;
+}
+
+.post li {
+  margin-bottom: 0.5rem;
+}
+
+
+.post-media {
   margin: 2rem auto;
   text-align: center;
 }
 
-.post-image img {
+.post-media img,
+.post-media video {
   width: 80%;
+  max-width: 900px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-.post-image figcaption {
-  font: italic 14px Garamond, serif;
+.post-media figcaption {
+  font: italic 16px Garamond, serif;
   color: #444;
-  margin: 0.25rem 0 0 0; /* no gap */
+  margin: 0.25rem 0 0 0;
 }
 
 .post-divider {
